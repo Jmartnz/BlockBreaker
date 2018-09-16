@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
+    [SerializeField] private Scene scene;
+
     public void StartGame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(scene.buildIndex);
     }
 
     public void ExitGame()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Block : MonoBehaviour {
 
+    [SerializeField] AudioClip breakSound;
     [SerializeField] private int hits;
 
 	// Use this for initialization
@@ -18,10 +19,18 @@ public class Block : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Ball>())
-        {
-            hits--;
-            if (hits <= 0) { Destroy(gameObject); }
-        }
+        if (collision.gameObject.GetComponent<Ball>()) { TakeHit(); }
+    }
+
+    private void TakeHit()
+    {
+        hits--;
+        if (hits <= 0) { DestroyBlock(); }
+    }
+
+    private void DestroyBlock()
+    {
+        AudioSource.PlayClipAtPoint(breakSound, transform.position);
+        Destroy(gameObject);
     }
 }

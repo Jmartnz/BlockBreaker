@@ -7,12 +7,19 @@ public class Ball : MonoBehaviour {
     [SerializeField] private Paddle paddle;
     [SerializeField] private float verticalPush;
     [SerializeField] private float horizontalPush;
+    [SerializeField] private AudioClip[] audioClips;
 
     private Vector2 distanceToPaddle;
     private bool isLocked;
 
+    // Cached references
+    private AudioSource audioSource;
+    private Rigidbody2D rigidBody;
+
 	// Use this for initialization
 	void Start () {
+        audioSource = GetComponent<AudioSource>();
+        rigidBody = GetComponent<Rigidbody2D>();
         distanceToPaddle = transform.position - paddle.transform.position;
         isLocked = true;
     }
@@ -23,10 +30,7 @@ public class Ball : MonoBehaviour {
         {
             LockToPaddle();
             // Launch ball if we do Left Click on the mouse
-            if (Input.GetMouseButtonDown(0))
-            {
-                Launch();
-            }
+            if (Input.GetMouseButtonDown(0)) { Launch(); }
         }
     }
 
@@ -39,16 +43,21 @@ public class Ball : MonoBehaviour {
 
     private void Launch()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalPush, verticalPush);
+        rigidBody.velocity = new Vector2(horizontalPush, verticalPush);
         isLocked = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Play random collision sound
+        AudioClip clip = audioClips[UnityEngine.Random.Range(0, audioClips.Length)];
+        audioSource.PlayOneShot(clip);
+
+        // If paddle is collided, reset vertical push to avoid slow ball
         if (collision.gameObject.GetComponent<Paddle>())
         {
-            Vector2 currentVelocity = GetComponent<Rigidbody2D>().velocity;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(currentVelocity.x, verticalPush); 
+            Vector2 currentVelocity = rigidBody.velocity;
+            rigidBody.velocity = new Vector2(currentVelocity.x, verticalPush); 
         }
     }
 }
