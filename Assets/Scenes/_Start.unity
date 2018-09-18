@@ -411,7 +411,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1085314760}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -806,7 +806,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1085314760}
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
@@ -852,3 +852,9 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 711836057}
+--- !u!114 &1085314760 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114750988401622060, guid: b6b9613d30cd5d44889fc95a56a97a90,
+    type: 2}
+  m_PrefabInternal: {fileID: 683512820}
+  m_Script: {fileID: 11500000, guid: 6faad9181b2f2c2448ac84438634eb3b, type: 3}

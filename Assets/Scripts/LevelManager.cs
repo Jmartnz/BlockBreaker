@@ -5,16 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
-    [SerializeField] private Scene scene;
+    private Block[] blocks;
+    private int numberOfBlocks;
+
+    // Use this for initialization
+    void Start()
+    {
+        blocks = FindObjectsOfType<Block>();
+        numberOfBlocks = blocks.Length;
+    }
 
     public void StartGame()
     {
-        SceneManager.LoadScene(scene.buildIndex);
+        SceneManager.LoadScene("Level 1-1");
     }
 
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void DecreaseNumberOfBlocks()
+    {
+        numberOfBlocks--;
+        if (numberOfBlocks <= 0) { LoadNextLevel(); }
+    }
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }

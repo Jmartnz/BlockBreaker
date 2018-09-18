@@ -20,6 +20,8 @@ public class Ball : MonoBehaviour {
 	void Start () {
         audioSource = GetComponent<AudioSource>();
         rigidBody = GetComponent<Rigidbody2D>();
+        // This fixes the weird error with collision
+        rigidBody.simulated = false;
         distanceToPaddle = transform.position - paddle.transform.position;
         isLocked = true;
     }
@@ -30,7 +32,11 @@ public class Ball : MonoBehaviour {
         {
             LockToPaddle();
             // Launch ball if we do Left Click on the mouse
-            if (Input.GetMouseButtonDown(0)) { Launch(); }
+            if (Input.GetMouseButtonDown(0))
+            {
+                rigidBody.simulated = true;
+                Launch();
+            }
         }
     }
 
