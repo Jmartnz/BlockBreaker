@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameSession : MonoBehaviour {
 
     [Range(0.1f, 2f)][SerializeField] private float gameSpeed = 1f;
-    [SerializeField] private int score = 0;
+    private int score = 0;
 
     // Cached references
     private Text scoreText;
@@ -25,13 +25,15 @@ public class GameSession : MonoBehaviour {
     }
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         scoreText = FindObjectOfType<Text>();
         scoreText.text = score.ToString();
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         Time.timeScale = gameSpeed;
     }
 

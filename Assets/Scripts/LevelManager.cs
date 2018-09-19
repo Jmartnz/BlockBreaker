@@ -5,14 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
-    private Block[] blocks;
+    private List<Block> blocks = new List<Block>();
     private int numberOfBlocks;
 
     // Use this for initialization
     void Start()
     {
-        blocks = FindObjectsOfType<Block>();
-        numberOfBlocks = blocks.Length;
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Breakable"))
+        {
+            blocks.Add(go.GetComponent<Block>());
+        }
+        numberOfBlocks = blocks.Count;
     }
 
     public void StartGame()
