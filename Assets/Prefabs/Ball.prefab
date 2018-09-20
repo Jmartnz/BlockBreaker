@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1620862765665520}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1620862765665520
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4462127033259132}
   - component: {fileID: 212629214171307466}
@@ -34,7 +34,7 @@ GameObject:
 --- !u!4 &4462127033259132
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1620862765665520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -48,7 +48,7 @@ Transform:
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1620862765665520}
   m_BodyType: 0
@@ -67,7 +67,7 @@ Rigidbody2D:
 --- !u!58 &58110971982208566
 CircleCollider2D:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1620862765665520}
   m_Enabled: 1
@@ -82,7 +82,7 @@ CircleCollider2D:
 --- !u!82 &82102803465236862
 AudioSource:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1620862765665520}
   m_Enabled: 1
@@ -177,7 +177,7 @@ AudioSource:
 --- !u!114 &114229590136749286
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1620862765665520}
   m_Enabled: 1
@@ -185,9 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdf8f95571e0184496b94700c75f867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxVelocity: 12
   paddle: {fileID: 0}
-  verticalPush: 15
-  horizontalPush: 2
   audioClips:
   - {fileID: 8300000, guid: 0bb7b20f18a187549ab7b6d52db5278d, type: 3}
   - {fileID: 8300000, guid: 330ae88bd5d2cde43824b7b24c4ffb22, type: 3}
@@ -195,7 +194,7 @@ MonoBehaviour:
 --- !u!212 &212629214171307466
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1620862765665520}
   m_Enabled: 1
@@ -237,3 +236,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

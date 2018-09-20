@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Block : MonoBehaviour {
 
-    [SerializeField] private int hits = 1;
+    [SerializeField] private int maxHits = 1;
     [SerializeField] private int points = 10;
     [SerializeField] private bool breakable = true;
     [SerializeField] private AudioClip breakSound;
@@ -15,8 +15,10 @@ public class Block : MonoBehaviour {
     private LevelManager levelManager;
     private SpriteRenderer spriteRenderer;
 
+    // TODO Consider making this list a SerializeField
     // Sprites to show block damage
     private List<Sprite> sprites;
+    private int hits = 0;
 
     // Use this for initialization
     void Start()
@@ -38,20 +40,20 @@ public class Block : MonoBehaviour {
 
     private void TakeHit()
     {
-        hits--;
-        if (hits > 1)
+        hits++;
+        if (hits == maxHits)
         {
-            // Low damage sprite
-            spriteRenderer.sprite = sprites[0];
+            DestroyBlock();
         }
-        else if (hits == 1)
+        else if (hits >= maxHits / 2)
         {
             // Critical damage sprite
             spriteRenderer.sprite = sprites[1];
         }
-        else if (hits <= 0)
+        else
         {
-            DestroyBlock();
+            // Low damage sprite
+            spriteRenderer.sprite = sprites[0];
         }
     }
 
@@ -67,6 +69,6 @@ public class Block : MonoBehaviour {
 
     private void TriggerSparklesVFX()
     {
-        GameObject sparkles = Instantiate(sparklesVFX, transform.position, transform.rotation);
+        Instantiate(sparklesVFX, transform.position, transform.rotation);
     }
 }

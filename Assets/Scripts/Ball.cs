@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
 
-    [SerializeField] private float verticalPush;
-    [SerializeField] private float horizontalPush;
+    [SerializeField] private float maxVelocity;
     [SerializeField] private Paddle paddle;
     [SerializeField] private AudioClip[] audioClips;
 
@@ -48,9 +47,9 @@ public class Ball : MonoBehaviour {
     private void Launch()
     {
         rigidBody.simulated = true;
-        rigidBody.velocity = new Vector2(horizontalPush, verticalPush);
+        // We want a straight up first shoot!
+        rigidBody.velocity = new Vector2(0.0f, maxVelocity);
         isLocked = false;
-        // TODO Add some random horizontal push
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -59,11 +58,34 @@ public class Ball : MonoBehaviour {
         AudioClip clip = audioClips[UnityEngine.Random.Range(0, audioClips.Length)];
         audioSource.PlayOneShot(clip);
 
-        // If paddle is collided, reset vertical push to avoid slow ball
-        if (collision.gameObject.GetComponent<Paddle>())
+        // If ball is stuck on either X or Y axis, we apply some push to avoid endless bouncing
+        float xPush = 0;
+        float yPush = 0;
+        Vector2 currentVelocity = rigidBody.velocity;
+
+        // Horizontal push
+        if (currentVelocity.x == 0.0f)
         {
-            Vector2 currentVelocity = rigidBody.velocity;
-            rigidBody.velocity = new Vector2(currentVelocity.x, verticalPush); 
+            do {
+                xPush = UnityEngine.Random.Range(-2.0f, 2.0f);
+            } while (xPush == 0.0f);
         }
+
+        // Downward push
+        if (currentVelocity.y == 0.0f || (currentVelocity.y > -1.0f && currentVelocity.y <= 0.0f))
+        {
+            yPush = UnityEngine.Random.Range(-3.0f, -2.0f);
+        }
+        // Upward push
+        else if (currentVelocity.y > 0.0f && currentVelocity.y <= 1.0f)
+        {
+            yPush = UnityEngine.Random.Range(2.0f, 3.0f);
+        }
+
+        // We clamp the velocity of the ball in order to avoid absurd speeds and improve playability.
+        rigidBody.velocity = new Vector2(
+            Mathf.Clamp(currentVelocity.x + xPush, -maxVelocity, maxVelocity),
+            Mathf.Clamp(currentVelocity.y + yPush, -maxVelocity, maxVelocity));
     }
+
 }
