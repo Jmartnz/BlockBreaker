@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameSession : MonoBehaviour {
 
     [Range(0.1f, 2f)][SerializeField] private float gameSpeed = 1f;
+    [SerializeField] private bool autoPlayEnabled = false;
+
     private int score = 0;
 
     // Cached references
@@ -47,5 +49,10 @@ public class GameSession : MonoBehaviour {
     {
         score = 0;
         scoreText.text = score.ToString();
+    }
+
+    public bool IsAutoPlayEnabled()
+    {
+        return this.autoPlayEnabled;
     }
 }

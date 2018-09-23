@@ -63,6 +63,7 @@ public class Ball : MonoBehaviour {
         float yPush = 0;
         Vector2 currentVelocity = rigidBody.velocity;
 
+        // TODO Improve horizontal push to avoid near-zero velocity
         // Horizontal push
         if (currentVelocity.x == 0.0f)
         {

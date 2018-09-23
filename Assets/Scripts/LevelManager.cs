@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour {
 
     public void StartGame()
     {
+        Cursor.visible = false;
         SceneManager.LoadScene("Level 1-1");
     }
 
