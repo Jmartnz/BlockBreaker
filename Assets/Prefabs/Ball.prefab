@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdf8f95571e0184496b94700c75f867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 12
+  maxVelocity: 15
   paddle: {fileID: 0}
   audioClips:
   - {fileID: 8300000, guid: 0bb7b20f18a187549ab7b6d52db5278d, type: 3}
